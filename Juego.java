@@ -32,7 +32,8 @@ public class Juego
       }
    }
    
-   public void jugarRonda(){
-    
+   public void jugarRonda(int cartaJugador1, int cartaJugador2){
+      Jugador ganador = jugador1;
+      if ()
     }
 }
