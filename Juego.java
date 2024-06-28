@@ -22,6 +22,13 @@ public class Juego
    public void repartirCartas(){
       Random random = new Random();
       Mazo mazoRepartir = mazo;
-      while ()
+      while (mazoRepartir.size() > 0){
+         int num = random.next(mazoRepartir.size());
+         jugador1.agregarCarta(mazoRepartir.get(num));
+         mazoRepartir.remove(num);
+         num = random.next(mazoRepartir.size());
+         jugador2.agregarCarta(mazoRepartir.get(num));
+         mazoRepartir.remove(num);
+      }
    }
 }
