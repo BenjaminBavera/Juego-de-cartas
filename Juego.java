@@ -1,4 +1,4 @@
-
+import java.util.*;
 /**
  * Write a description of class Juego here.
  * 
@@ -22,13 +22,13 @@ public class Juego
    public void repartirCartas(){
       Random random = new Random();
       Mazo mazoRepartir = mazo;
-      while (mazoRepartir.size() > 0){
-         int num = random.next(mazoRepartir.size());
-         jugador1.agregarCarta(mazoRepartir.get(num));
-         mazoRepartir.remove(num);
-         num = random.next(mazoRepartir.size());
-         jugador2.agregarCarta(mazoRepartir.get(num));
-         mazoRepartir.remove(num);
+      while (mazoRepartir.obtenerTamañoLista() > 0) {
+         int num = random.nextInt(mazoRepartir.obtenerTamañoLista());
+         jugador1.agregarCarta(mazoRepartir.obtenerCarta(num));
+         mazoRepartir.eliminarCarta(num);
+         num = random.nextInt(mazoRepartir.obtenerTamañoLista());
+         jugador2.agregarCarta(mazoRepartir.obtenerCarta(num));
+         mazoRepartir.eliminarCarta(num);
       }
    }
 }

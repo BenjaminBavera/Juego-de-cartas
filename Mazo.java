@@ -8,9 +8,9 @@ import java.util.*;
  */
 public class Mazo
 {
-   private ArrayList<Carta> cartas;
+    private ArrayList<Carta> cartas;
 
-   public Mazo(){
+    public Mazo(int a){
       cartas = new ArrayList();
       cartas.add(new Carta("CR7",99));
       cartas.add(new Carta("Messi",99));
@@ -22,5 +22,25 @@ public class Mazo
       cartas.add(new Carta("Merentiel",75));
       cartas.add(new Carta("Courtois",88));
       cartas.add(new Carta("Modric",90));
-   }
+    }
+    
+    public Mazo(){
+        cartas = new ArrayList();
+    }
+    
+    public int obtenerTamañoLista(){
+        return cartas.size();
+    }
+   
+    public void agregarCarta(Carta carta){
+        cartas.add(carta);
+    }
+    
+    public Carta obtenerCarta(int num){
+        return cartas.get(num);
+    } 
+    
+    public void eliminarCarta(int num){
+        cartas.remove(num);
+    }
 }

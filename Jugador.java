@@ -1,3 +1,4 @@
+import java.util.*;
 
 /**
  * Write a description of class Jugadores here.
@@ -14,5 +15,14 @@ public class Jugador
    public Jugador(String nombre){
       this.nombre = nombre;
       puntuacion = 0;
+      cartas = new Mazo();
    }
+   
+   public void agregarCarta(Carta carta){
+       cartas.agregarCarta(carta); 
+    }
+    
+   public int cantidadCartas(){
+       return cartas.obtenerTamañoLista(); 
+    } 
 }
