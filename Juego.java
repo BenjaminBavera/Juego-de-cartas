@@ -22,7 +22,8 @@ public class Juego
    }
 
    public void repartirCartas(){
-      Random random = new Random();
+      if (ronda > 0) throw new IllegalStateException("El juego ya comenzo, no se pueden volver a repartir las cartas");
+       Random random = new Random();
       Mazo mazoRepartir = mazo.clonarMazo();
       while (mazoRepartir.obtenerTamañoLista() > 0) {
          int num = random.nextInt(mazoRepartir.obtenerTamañoLista());
@@ -34,37 +35,36 @@ public class Juego
       }
    }
    
-   public Jugador jugarRonda(int cartaJugador1, int cartaJugador2){
+   public String jugarRonda(int cartaJugador1, int cartaJugador2){
        if (ronda > rondasMaximas) throw new IllegalStateException("Se han jugado todas las rondas. Ya se puede obtener un ganador");
-       Jugador ganador = new Jugador("empate");
+       String ganador ="empate";
        if (jugador1.obtenerCarta(cartaJugador1).obtenerPoder() > jugador2.obtenerCarta(cartaJugador2).obtenerPoder()){
-          ganador = jugador1;
+          ganador = jugador1.obtenerNombre();
           jugador1.sumarPuntuacion();
         }       
        if (jugador2.obtenerCarta(cartaJugador2).obtenerPoder() > jugador1.obtenerCarta(cartaJugador1).obtenerPoder()){
-          ganador = jugador2;
+          ganador = jugador2.obtenerNombre();
           jugador2.sumarPuntuacion();
         }
-       if (jugador2.obtenerCarta(cartaJugador2).obtenerPoder() == jugador1.obtenerCarta(cartaJugador2).obtenerPoder()){
-          ganador = null;
-       }
        System.out.println("Carta de "+jugador1.obtenerNombre()+": "+jugador1.obtenerCarta(cartaJugador1).obtenerNombre()+ " "+jugador1.obtenerCarta(cartaJugador1).obtenerPoder());
        System.out.println("VS");
        System.out.println("Carta de "+jugador2.obtenerNombre()+": "+jugador2.obtenerCarta(cartaJugador2).obtenerNombre()+ " "+jugador2.obtenerCarta(cartaJugador2).obtenerPoder());
+       System.out.println("********************************");
+       System.out.println("Ganador: " + ganador);
        jugador1.eliminarCarta(cartaJugador1); 
        jugador2.eliminarCarta(cartaJugador2);
        ronda++; 
         return ganador; 
     }
     
-   public Jugador obtenerGanador(){
+   public String obtenerGanador(){
        if (ronda < rondasMaximas) throw new IllegalStateException("Aun no se han jugado todas las rondas");
-       Jugador ganador = new Jugador("empate");
+       String ganador = "empate";
        if (jugador1.obtenerPuntuacion() > jugador2.obtenerPuntuacion()){
-           ganador = jugador1;     
+           ganador = jugador1.obtenerNombre();     
         }
        if (jugador1.obtenerPuntuacion() < jugador2.obtenerPuntuacion()){
-           ganador = jugador2;     
+           ganador = jugador2.obtenerNombre();     
         } 
        return ganador; 
     } 
