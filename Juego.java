@@ -21,7 +21,7 @@ public class Juego
 
    public void repartirCartas(){
       Random random = new Random();
-      Mazo mazoRepartir = mazo;
+      Mazo mazoRepartir = mazo.clonarMazo();
       while (mazoRepartir.obtenerTamañoLista() > 0) {
          int num = random.nextInt(mazoRepartir.obtenerTamañoLista());
          jugador1.agregarCarta(mazoRepartir.obtenerCarta(num));
@@ -31,4 +31,8 @@ public class Juego
          mazoRepartir.eliminarCarta(num);
       }
    }
+   
+   public void jugarRonda(){
+    
+    }
 }
