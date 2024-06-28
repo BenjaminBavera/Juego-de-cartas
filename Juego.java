@@ -12,8 +12,16 @@ public class Juego
    private Jugador jugador2;
 
    public Juego(Jugador jugador1, Jugador jugador2, Mazo mazo){
+      if (jugador1 == null || jugador2 == null) throw new IllegalArgumentException("jugador invalido");
+      if (mazo == null) throw new IllegalArgumentException("mazo invalido");
       this.jugador1 = jugador1;
       this.jugador2 = jugador2;
       this.mazo = mazo;
+   }
+
+   public void repartirCartas(){
+      Random random = new Random();
+      Mazo mazoRepartir = mazo;
+      while ()
    }
 }
