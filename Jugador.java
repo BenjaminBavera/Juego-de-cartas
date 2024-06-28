@@ -24,12 +24,30 @@ public class Jugador
         cartas = new Mazo();
    }
    
+   public String obtenerNombre(){
+       return nombre; 
+    }
    public void agregarCarta(Carta carta){
        cartas.agregarCarta(carta); 
     }
+   
+   public void eliminarCarta(int num){
+       cartas.eliminarCarta(num); 
+    } 
+    
+   public Carta obtenerCarta(int num){
+       return cartas.obtenerCarta(num); 
+    } 
     
    public int cantidadCartas(){
        return cartas.obtenerTamañoLista(); 
     } 
     
+   public int obtenerPuntuacion(){
+       return puntuacion; 
+    } 
+    
+    public void sumarPuntuacion(){
+        puntuacion++;
+    }
 }
