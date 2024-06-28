@@ -43,4 +43,11 @@ public class Mazo
     public void eliminarCarta(int num){
         cartas.remove(num);
     }
+
+   public Mazo clonarMazo(){
+      Mazo mazoClonado = new Mazo();
+      for (int i = 0; i < cartas.length; i++){
+         mazoClonado.agregarCarta(obtenerCarta(i));
+      }
+   }
 }
