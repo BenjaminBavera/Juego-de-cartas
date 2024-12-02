@@ -1,4 +1,7 @@
 import java.util.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 /**
  * Write a description of class Juego here.
  * 
@@ -7,18 +10,19 @@ import java.util.*;
  */
 public class Juego
 {
+   private JFrame frame;
    private Mazo mazo;
    private Jugador jugador1;
    private Jugador jugador2;
    private int ronda;
    private final int rondasMaximas = 5;
 
-   public Juego(Jugador jugador1, Jugador jugador2, Mazo mazo){
-      if (jugador1 == null || jugador2 == null) throw new IllegalArgumentException("jugador invalido");
-      if (mazo == null) throw new IllegalArgumentException("mazo invalido");
-      this.jugador1 = jugador1;
-      this.jugador2 = jugador2;
-      this.mazo = mazo;
+   public Juego(String nombre1, String nombre2){
+      if (nombre1 == null || nombre2 == null) throw new IllegalArgumentException("jugador invalido");
+      this.jugador1 = new Jugador(nombre1);
+      this.jugador2 = new Jugador(nombre2);
+      crearMazo();
+      makeFrame();
    }
 
    public void repartirCartas(){
@@ -67,5 +71,49 @@ public class Juego
            ganador = jugador2.obtenerNombre();     
         } 
        return ganador; 
-    } 
+      }
+      
+      private void crearMazo(){
+         this.mazo = new Mazo();
+         mazo.agregarCarta(new Carta("CR7",99));
+         mazo.agregarCarta(new Carta("Messi",99));
+         mazo.agregarCarta(new Carta("Neymar",95));
+         mazo.agregarCarta(new Carta("Kroos",90));
+         mazo.agregarCarta(new Carta("Iniesta",94));
+         mazo.agregarCarta(new Carta("Ramos",91));
+         mazo.agregarCarta(new Carta("De Bruyne",90));
+         mazo.agregarCarta(new Carta("Merentiel",75));
+         mazo.agregarCarta(new Carta("Courtois",88));
+         mazo.agregarCarta(new Carta("Modric",90));
+      }
+
+      private void makeFrame(){
+         frame = new JFrame();
+         makeMenuBar(frame);
+
+         Container contentPane = new Container();
+
+         frame.pack();
+         frame.setVisible(true);
+      }
+
+      private void makeMenuBar(JFrame frame){
+         JMenuBar menubar = new JMenuBar();
+         frame.setJMenuBar(menubar);
+
+         JMenu gameMenu = new JMenu("Juego");
+            JMenuItem repartirCartas = new JMenuItem("Repartir cartas");
+            repartirCartas.addActionListener(e -> repartirCartas());
+            gameMenu.add(repartirCartas);
+
+            JMenuItem jugarRonda = new JMenuItem("Jugar ronda");
+            jugarRonda.addActionListener(e -> jugarRonda(1, 1));
+            gameMenu.add(jugarRonda);
+
+            JMenuItem obtenerGanador = new JMenuItem("Obtener ganador");
+            obtenerGanador.addActionListener(e -> obtenerGanador());
+            gameMenu.add(obtenerGanador);
+
+         menubar.add(gameMenu);   
+      }
 }
